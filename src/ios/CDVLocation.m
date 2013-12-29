@@ -129,6 +129,7 @@
     // update, even if our location did not change.
     [self.locationManager stopUpdatingLocation];
     [self.locationManager startUpdatingLocation];
+    self.locationManager.pausesLocationUpdatesAutomatically = NO;
     __locationStarted = YES;
     if (enableHighAccuracy) {
         __highAccuracyEnabled = YES;
