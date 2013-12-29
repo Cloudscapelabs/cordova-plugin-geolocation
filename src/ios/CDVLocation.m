@@ -69,6 +69,7 @@
         __locationStarted = NO;
         __highAccuracyEnabled = NO;
         self.locationData = nil;
+        self.locationManager.pausesLocationUpdatesAutomatically = NO;
     }
     return self;
 }
@@ -127,7 +128,6 @@
     // Tell the location manager to start notifying us of location updates. We
     // first stop, and then start the updating to ensure we get at least one
     // update, even if our location did not change.
-    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
     [self.locationManager stopUpdatingLocation];
     [self.locationManager startUpdatingLocation];
     
