@@ -29,7 +29,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         </js-module>
 
         <js-module src="www/geolocation.js" name="geolocation">
-            <clobbers target="geo" />
+            <clobbers target="navigator.geolocation" />
         </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
