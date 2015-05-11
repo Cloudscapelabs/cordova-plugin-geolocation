@@ -148,7 +148,7 @@
     __locationStarted = YES;
     if (enableHighAccuracy) {
         __highAccuracyEnabled = YES;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.distanceFilter = 1; //kCLDistanceFilterNone;
         // Set desired accuracy to Best.
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     } else {
