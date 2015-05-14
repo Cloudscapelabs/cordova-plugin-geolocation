@@ -159,6 +159,13 @@
     }
 }
 
+- (void)disableHighAccuracy
+{
+    __highAccuracyEnabled = NO;
+    self.locationManager.distanceFilter = 99999;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+}
+
 - (void)_stopLocation
 {
     if (__locationStarted) {
