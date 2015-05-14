@@ -92,6 +92,7 @@ var geolocation = {
                 // Don't continue with success callback.
                 return;
             }
+            exec(null, null, "Geolocation", "disableHighAccuracy", []);
             var pos = new Position(
                 {
                     latitude:p.latitude,
@@ -110,6 +111,7 @@ var geolocation = {
         var fail = function(e) {
             clearTimeout(timeoutTimer.timer);
             timeoutTimer.timer = null;
+            exec(null, null, "Geolocation", "disableHighAccuracy", []);
             var err = new PositionError(e.code, e.message);
             if (errorCallback) {
                 errorCallback(err);
