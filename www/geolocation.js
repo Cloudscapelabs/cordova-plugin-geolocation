@@ -85,8 +85,6 @@ var geolocation = {
         argscheck.checkArgs('fFO', 'geolocation.getCurrentPosition', arguments);
         options = parseParameters(options);
 
-        alert("Calling getCurrentPosition");
-        
         // Timer var that will fire an error callback if no position is retrieved from native
         // before the "timeout" param provided expires
         var timeoutTimer = {timer:null};
