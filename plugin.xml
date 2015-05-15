@@ -80,7 +80,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <framework src="CoreLocation.framework" />
         
         <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription" overwrite="true">
-            <string>SafeSite requires geolocation.</string>
+            <string>SafeSite v20150515 requires geolocation.</string>
         </config-file>
         
     </platform>
