@@ -72,7 +72,7 @@ var geolocation = {
     
     disableHighAccuracy: function() {
         exec(null, null, "Geolocation", "disableHighAccuracy", []);
-    }
+    },
     
     /**
    * Asynchronously acquires the current position.
