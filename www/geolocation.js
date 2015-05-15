@@ -90,6 +90,10 @@ var geolocation = {
         var timeoutTimer = {timer:null};
 
         var win = function(p) {
+            if (p.accuracy > 20 && timeoutTimer.timer) {
+                exec(win, fail, "Geolocation", "getLocation", [options.enableHighAccuracy, options.maximumAge]);
+                return;
+            }
             clearTimeout(timeoutTimer.timer);
             if (!(timeoutTimer.timer)) {
                 // Timeout already happened, or native fired error callback for
@@ -97,6 +101,7 @@ var geolocation = {
                 // Don't continue with success callback.
                 return;
             }
+            geolocation.disableHighAccuracy();
             var pos = new Position(
                 {
                     latitude:p.latitude,
