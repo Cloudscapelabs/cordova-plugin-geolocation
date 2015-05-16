@@ -79,6 +79,13 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <source-file src="src/ios/CDVLocation.m" />
         <framework src="CoreLocation.framework" />
         
+        <!-- The app is able to run in background through location-tracking mode -->
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>location</string>
+            </array>
+        </config-file>
+        
         <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription" overwrite="true">
             <string>SafeSite v20150515 requires geolocation.</string>
         </config-file>
