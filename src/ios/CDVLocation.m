@@ -148,7 +148,7 @@
     __locationStarted = YES;
     if (enableHighAccuracy) {
         __highAccuracyEnabled = YES;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.distanceFilter = 1; //kCLDistanceFilterNone;
         // Set desired accuracy to Best.
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     } else {
@@ -199,7 +199,8 @@
         }
     } else {
         // No callbacks waiting on us anymore, turn off listening.
-        [self _stopLocation];
+        //[self _stopLocation];
+        [self disableHighAccuracy];
     }
 }
 
@@ -275,7 +276,8 @@
     if (self.locationData && self.locationData.watchCallbacks && [self.locationData.watchCallbacks objectForKey:timerId]) {
         [self.locationData.watchCallbacks removeObjectForKey:timerId];
         if([self.locationData.watchCallbacks count] == 0) {
-            [self _stopLocation];
+            //[self _stopLocation];
+            [self disableHighAccuracy];
         }
     }
 }
