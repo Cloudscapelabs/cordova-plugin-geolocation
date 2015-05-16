@@ -71,7 +71,7 @@ var geolocation = {
     lastPosition:null, // reference to last known (cached) position returned
     
     disableHighAccuracy: function() {
-        exec(null, null, "Geolocation", "disableHighAccuracy", []);
+        //exec(null, null, "Geolocation", "disableHighAccuracy", []);
     },
     
     /**
