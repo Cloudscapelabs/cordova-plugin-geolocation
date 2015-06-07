@@ -70,8 +70,8 @@ function createTimeout(errorCallback, timeout) {
 var geolocation = {
     lastPosition:null, // reference to last known (cached) position returned
     
-    disableHighAccuracy: function() {
-        //exec(null, null, "Geolocation", "disableHighAccuracy", []);
+    setHighAccuracy: function(enableHighAccuracy) {
+        exec(null, null, "Geolocation", "setHighAccuracy", [enableHighAccuracy]);
     },
     
     /**
@@ -97,7 +97,6 @@ var geolocation = {
                 // Don't continue with success callback.
                 return;
             }
-            geolocation.disableHighAccuracy();
             var pos = new Position(
                 {
                     latitude:p.latitude,
@@ -116,7 +115,6 @@ var geolocation = {
         var fail = function(e) {
             clearTimeout(timeoutTimer.timer);
             timeoutTimer.timer = null;
-            geolocation.disableHighAccuracy();  // Alex: custom code to power down GPS
             var err = new PositionError(e.code, e.message);
             if (errorCallback) {
                 errorCallback(err);
