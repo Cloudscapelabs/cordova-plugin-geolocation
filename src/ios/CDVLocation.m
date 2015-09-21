@@ -66,8 +66,13 @@
         self.locationManager.pausesLocationUpdatesAutomatically = NO;
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+            NSLog(@"[Info] Allowing background location updates on iOS 9");
             self.locationManager.allowsBackgroundLocationUpdates = YES;
-        }        
+        }   
+        else 
+        {
+            NSLog(@"[Info] iOS version < 9, background location updates enabled automatically");
+        }
     }
     return self;
 }
