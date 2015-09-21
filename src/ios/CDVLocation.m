@@ -64,6 +64,10 @@
         __highAccuracyEnabled = NO;
         self.locationData = nil;
         self.locationManager.pausesLocationUpdatesAutomatically = NO;
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+            self.locationManager.allowsBackgroundLocationUpdates = YES;
+        }        
     }
     return self;
 }
