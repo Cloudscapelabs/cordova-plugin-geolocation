@@ -67,7 +67,15 @@
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
             NSLog(@"[Info] Allowing background location updates on iOS 9");
-            self.locationManager.allowsBackgroundLocationUpdates = YES;
+            //self.locationManager.allowsBackgroundLocationUpdates = YES;
+            BOOL yes = YES;
+            
+            NSMethodSignature* signature = [[CLLocationManager class] instanceMethodSignatureForSelector: @selector( setAllowsBackgroundLocationUpdates: )];
+            NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+            [invocation setTarget: locationManager];
+            [invocation setSelector: @selector( setAllowsBackgroundLocationUpdates: ) ];
+            [invocation setArgument: &yes atIndex: 2];
+            [invocation invoke];
         }   
         else 
         {
