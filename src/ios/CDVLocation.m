@@ -65,7 +65,7 @@
         self.locationData = nil;
         self.locationManager.pausesLocationUpdatesAutomatically = NO;
         
-        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {  //iOS 8.0+
+        if ([self.locationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {  //iOS 8.0+
             NSLog(@"[Info] Allowing background location updates on iOS 9");
             self.locationManager.allowsBackgroundLocationUpdates = YES;
         }
