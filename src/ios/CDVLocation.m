@@ -54,44 +54,40 @@
 
 @synthesize locationManager, locationData;
 
-- (CDVPlugin*)initWithWebView:(UIWebView*)theWebView
+- (void)pluginInitialize
 {
-    self = (CDVLocation*)[super initWithWebView:(UIWebView*)theWebView];
-    if (self) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self; // Tells the location manager to send updates to this object
-        __locationStarted = NO;
-        __highAccuracyEnabled = NO;
-        self.locationData = nil;
-        self.locationManager.pausesLocationUpdatesAutomatically = NO;
-        
-        if ([self.locationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {  //iOS 8.0+
-            NSLog(@"[Info] Allowing background location updates on iOS 9");
-            self.locationManager.allowsBackgroundLocationUpdates = YES;
-        }
-        else 
-        {
-            NSLog(@"[Info] iOS version < 9, background location updates enabled automatically");
-        }
-        
-        
-        // if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-        //     NSLog(@"[Info] Allowing background location updates on iOS 9");
-        //     BOOL yes = YES;
-            
-        //     NSMethodSignature* signature = [[CLLocationManager class] instanceMethodSignatureForSelector: @selector( setAllowsBackgroundLocationUpdates: )];
-        //     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
-        //     [invocation setTarget: locationManager];
-        //     [invocation setSelector: @selector( setAllowsBackgroundLocationUpdates: ) ];
-        //     [invocation setArgument: &yes atIndex: 2];
-        //     [invocation invoke];
-        // }   
-        // else 
-        // {
-        //     NSLog(@"[Info] iOS version < 9, background location updates enabled automatically");
-        // }
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self; // Tells the location manager to send updates to this object
+    __locationStarted = NO;
+    __highAccuracyEnabled = NO;
+    self.locationData = nil;
+    self.locationManager.pausesLocationUpdatesAutomatically = NO;
+     
+    if ([self.locationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {  //iOS 8.0+
+        NSLog(@"[Info] Allowing background location updates on iOS 9");
+        self.locationManager.allowsBackgroundLocationUpdates = YES;
     }
-    return self;
+    else 
+    {
+        NSLog(@"[Info] iOS version < 9, background location updates enabled automatically");
+    }
+        
+        
+    // if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
+    //     NSLog(@"[Info] Allowing background location updates on iOS 9");
+    //     BOOL yes = YES;
+        
+    //     NSMethodSignature* signature = [[CLLocationManager class] instanceMethodSignatureForSelector: @selector( setAllowsBackgroundLocationUpdates: )];
+    //     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+    //     [invocation setTarget: locationManager];
+    //     [invocation setSelector: @selector( setAllowsBackgroundLocationUpdates: ) ];
+    //     [invocation setArgument: &yes atIndex: 2];
+    //     [invocation invoke];
+    // }   
+    // else 
+    // {
+    //     NSLog(@"[Info] iOS version < 9, background location updates enabled automatically");
+    // }
 }
 
 - (BOOL)isAuthorized
