@@ -205,25 +205,27 @@
     didUpdateToLocation:(CLLocation*)newLocation
            fromLocation:(CLLocation*)oldLocation
 {
-    CDVLocationData* cData = self.locationData;
-
-    cData.locationInfo = newLocation;
-    if (self.locationData.locationCallbacks.count > 0) {
-        for (NSString* callbackId in self.locationData.locationCallbacks) {
-            [self returnLocationInfo:callbackId andKeepCallback:NO];
+    [self.commandDelegate runInBackground:^{
+        CDVLocationData* cData = self.locationData;
+    
+        cData.locationInfo = newLocation;
+        if (self.locationData.locationCallbacks.count > 0) {
+            for (NSString* callbackId in self.locationData.locationCallbacks) {
+                [self returnLocationInfo:callbackId andKeepCallback:NO];
+            }
+    
+            [self.locationData.locationCallbacks removeAllObjects];
         }
-
-        [self.locationData.locationCallbacks removeAllObjects];
-    }
-    if (self.locationData.watchCallbacks.count > 0) {
-        for (NSString* timerId in self.locationData.watchCallbacks) {
-            [self returnLocationInfo:[self.locationData.watchCallbacks objectForKey:timerId] andKeepCallback:YES];
+        if (self.locationData.watchCallbacks.count > 0) {
+            for (NSString* timerId in self.locationData.watchCallbacks) {
+                [self returnLocationInfo:[self.locationData.watchCallbacks objectForKey:timerId] andKeepCallback:YES];
+            }
+        } else {
+            // No callbacks waiting on us anymore, turn off listening.
+            //[self _stopLocation];
+            [self disableHighAccuracy];
         }
-    } else {
-        // No callbacks waiting on us anymore, turn off listening.
-        //[self _stopLocation];
-        [self disableHighAccuracy];
-    }
+    }];    
 }
 
 - (void)getLocation:(CDVInvokedUrlCommand*)command
